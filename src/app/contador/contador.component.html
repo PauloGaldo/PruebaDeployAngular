@@ -1,0 +1,22 @@
+<div>
+  <p>
+    {{contador}}
+  </p>
+</div>
+<div>
+  <button (click)="sumar()">Sumar</button>
+  <button (click)="restar()">Restar</button>
+</div>
+<div>
+  <form #form="ngForm">
+    <input type="text" [(ngModel)]="texto" name="texto">
+
+    <button (click)="guardar(texto)">Guardar</button>
+  </form>
+
+
+  <div *ngFor="let texto of textos">
+    <p class="texto">{{texto}}</p>
+  </div>
+
+</div>

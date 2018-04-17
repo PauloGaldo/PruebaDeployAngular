@@ -3,12 +3,31 @@ import { AppPage } from './app.po';
 describe('angular-tests App', () => {
   let page: AppPage;
 
-  beforeEach(() => {
+  beforeAll(() => {
     page = new AppPage();
+    page.navigateTo();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+  it('Parrafo inicia con valor en 0', () => {
+    expect(page.getParagraphText()).toEqual('0');
   });
+
+  it('Clickeamos sobre boton SUMAR', () => {
+    page.clickBotonSumar();
+    expect(page.getParagraphText()).toEqual('1');
+    page.pausarNavegador(5000);
+  });
+
+  it('Escribir sobre input text', () => {
+    page.getInputTexto().sendKeys('Hola mundo');
+    page.pausarNavegador(5000);
+    expect(page.getInputTexto().getAttribute('value')).toEqual('Hola mundo');
+    page.pausarNavegador(5000);
+  });
+
+  it('Se añadio a listado', () => {
+    page.clickBotonGuardar();
+    expect(page.getListado().count()).toBeGreaterThan(0);
+  });
+
 });
